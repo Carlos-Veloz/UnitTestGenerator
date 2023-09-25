@@ -1,15 +1,12 @@
 const {
-  readFileAsCode,
   contentMsg,
   generateUnitTest,
-  createTestSuitFile,
+  createOutputFiles,
 } = require("./chatgpt-api"),
   fs = require("fs"),
   path = require("path"),
   async = require('async');;
 
-const inputFiles = "../inputFiles";
-const file = "wbi_assessment_answer_middleware.dart";
 const framework = "Dart";
 
 (async () => {
