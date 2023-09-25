@@ -3,19 +3,30 @@ const {
   contentMsg,
   generateUnitTest,
   createTestSuitFile,
-} = require("./chatgpt-api");
+} = require("./chatgpt-api"),
+  fs = require("fs"),
+  path = require("path"),
+  async = require('async');;
 
-const path =
-  "../../users-be/src/main/java/com/speedcast/sigma/users/usermanagement/controllers/";
-const file = "RolesController.java";
-const framework = 'Java';
+const inputFiles = "../inputFiles";
+const file = "wbi_assessment_answer_middleware.dart";
+const framework = "Dart";
 
 (async () => {
   try {
-    const code = await readFileAsCode(path, file);
+    let folderPath = path.join(__dirname, inputFiles),
+      validFolder = fs.readdirSync(folderPath);
+    async.each(validFolder, async function (file) {
+      let fileData = fs.readFileSync(path.join(__dirname, inputFiles + '/' + file), "utf-8");
+      let prompt = await contentMsg(framework, fileData);
+      let output = await generateUnitTest(prompt);
+      await createOutputFiles(file, output);
+    });
+    /*const code = await readFileAsCode(path, file);
     let prompt = await contentMsg(framework, code);
     let output = await generateUnitTest(prompt);
-    await createTestSuitFile(file, output);
+    await createTestSuitFile(file, output);*/
+
   } catch (error) {
     console.error(error);
   }

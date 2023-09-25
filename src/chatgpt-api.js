@@ -11,7 +11,8 @@ const openai = new OpenAI({
 
 module.exports = {
   async contentMsg(framework, code) {
-    return "Could you generate unit test in " + framework +" Language, showing at least two unit tests per function, containing relevant assertions and all required packages within a single Java class? The source code is the following: " + code;
+    //return "Could you generate unit test in " + framework +" framework, showing at least two unit tests per function, one positive and one negative scenario, containing relevant assertions and all required packages within a single " + framework +"  class? The source code is the following: " + code;
+    return "Could you generate unit test in " + framework + "framework, verifying store dispatches of failure and success actions of run method, use GenerateNiceMocks tool to generate external dependencies. The source code is the following: " + code;
   },
 
   async readFileAsCode(filePath, file) {
@@ -38,7 +39,7 @@ module.exports = {
             content: prompt,
           },
         ],
-        temperature: 0,
+        temperature: 0.2,
         max_tokens: 2048,
       });
 
@@ -51,7 +52,7 @@ module.exports = {
     }
   },
 
-  async createTestSuitFile(file, output) {
+  async createOutputFiles(file, output) {
     //path where unit test file is created
     const outputFolder = "./output/";
     let fileName = path.join(outputFolder + "UT" + file);

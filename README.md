@@ -21,13 +21,9 @@ Once you have installed all dependencies required and added this PoC as another 
 
 Folder for source code
 ```
-const path = "..relative path to the folder"
+const inputFiles = "..relative path to the folder"
 ```
-File's name and extension
-```
-const file = "FileName.Ext"
-```
-And finally indicate the technology
+Indicate the technology
 ```
 const framework = "Java"
 ```

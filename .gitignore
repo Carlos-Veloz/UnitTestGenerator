@@ -53,3 +53,5 @@ Thumbs.db
 
 # Environment specific variables
 .env
+
+package-lock.json
