@@ -7,6 +7,7 @@ const {
   path = require("path"),
   async = require('async');;
 
+const inputFiles = '../inputFiles';
 const framework = "Dart";
 
 (async () => {
@@ -19,11 +20,7 @@ const framework = "Dart";
       let output = await generateUnitTest(prompt);
       await createOutputFiles(file, output);
     });
-    /*const code = await readFileAsCode(path, file);
-    let prompt = await contentMsg(framework, code);
-    let output = await generateUnitTest(prompt);
-    await createTestSuitFile(file, output);*/
-
+    
   } catch (error) {
     console.error(error);
   }
